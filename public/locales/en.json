@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Fusioeng"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "geo": {
+    "prompt": "Do you agree to share your geolocation to select the language automatically?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "lang": {
+    "uk": "Ukrainian",
+    "en": "English",
+    "es": "Spanish"
+  },
+  "ui": {
+    "languageTitle": "Language"
+  },
+  "home": {
+    "heroTitle": "Energy monitoring that feels simple",
+    "heroText": "TypeScript + SCSS + i18n (uk/en/es). Fast setup. Clean dashboards.",
+    "ctaPrimary": "View services",
+    "ctaSecondary": "Contact us",
+    "p1": "Modbus RTU/TCP support",
+    "p2": "Realtime + history",
+    "p3": "Alerts & exports",
+    "k1": "Devices",
+    "t1": "stable polling",
+    "k2": "Dashboards",
+    "t2": "fast insights",
+    "k3": "Reports",
+    "t3": "ready to share",
+    "note": "Tip: switch language anytime — content updates instantly."
+  },
+  "about": {
+    "title": "About",
+    "lead": "Fusioeng helps teams track electricity usage with clear dashboards and reliable device integration.",
+    "m1Title": "Mission",
+    "m1Text": "Make energy data understandable: collect, validate, visualize, and act.",
+    "m2Title": "How we work",
+    "m2Text": "Start small (1 device), confirm accuracy, then scale to circuits, sites, and reports.",
+    "m3Title": "What you get",
+    "m3Text": "A stable pipeline, clean UI, and exports for accounting and operations.",
+    "stackTitle": "Stack",
+    "stack1": "TypeScript + SCSS",
+    "stack2": "i18n via JSON locales",
+    "stack3": "Modbus register maps & validation"
+  },
+  "services": {
+    "title": "Services",
+    "text": "From device setup to dashboards and analytics.",
+    "s1Title": "Device integration",
+    "s1Text": "Modbus RTU/TCP register maps, gateways, validation.",
+    "s2Title": "Dashboards",
+    "s2Text": "Realtime + historical, per-circuit, alerts, exports.",
+    "s3Title": "Reporting",
+    "s3Text": "Daily/weekly/monthly reports, cost & tariff analysis."
+  },
+  "contact": {
+    "title": "Contact",
+    "lead": "Tell us what devices you have and what you want to see on the dashboard.",
+    "formTitle": "Quick request",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "note": "Demo form: no backend yet. We can connect Telegram/Email later.",
+    "detailsTitle": "Details",
+    "d1": "Response time",
+    "v1": "Same day",
+    "d2": "Region",
+    "v2": "Ukraine / EU",
+    "d3": "Formats",
+    "v3": "Dashboards, CSV, PDF",
+    "hint": "If you already have a register map — attach it and we’ll validate it first."
+  }
+}

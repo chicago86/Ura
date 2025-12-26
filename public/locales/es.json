@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Fusioeng"
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "contact": "Contacto"
+  },
+  "geo": {
+    "prompt": "¿Aceptas compartir tu geolocalización para seleccionar el idioma automáticamente?",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "lang": {
+    "uk": "Ucraniano",
+    "en": "Inglés",
+    "es": "Español"
+  },
+  "ui": {
+    "languageTitle": "Idioma"
+  },
+  "home": {
+    "heroTitle": "Monitoreo de energía que se siente simple",
+    "heroText": "TypeScript + SCSS + i18n (uk/en/es). Puesta en marcha rápida. Paneles limpios.",
+    "ctaPrimary": "Ver servicios",
+    "ctaSecondary": "Contactar",
+    "p1": "Soporte Modbus RTU/TCP",
+    "p2": "Tiempo real + historial",
+    "p3": "Alertas y exportaciones",
+    "k1": "Dispositivos",
+    "t1": "sondeo estable",
+    "k2": "Paneles",
+    "t2": "insights rápidos",
+    "k3": "Informes",
+    "t3": "listos para compartir",
+    "note": "Consejo: cambia el idioma cuando quieras — el contenido se actualiza al instante."
+  },
+  "about": {
+    "title": "Acerca de",
+    "lead": "Fusioeng ayuda a los equipos a seguir el consumo eléctrico con paneles claros e integración fiable de dispositivos.",
+    "m1Title": "Misión",
+    "m1Text": "Hacer los datos de energía comprensibles: recopilar, validar, visualizar y actuar.",
+    "m2Title": "Cómo trabajamos",
+    "m2Text": "Empezamos pequeño (1 dispositivo), confirmamos la precisión y luego escalamos a circuitos, sitios e informes.",
+    "m3Title": "Qué obtienes",
+    "m3Text": "Un pipeline estable, una UI limpia y exportaciones para contabilidad y operación.",
+    "stackTitle": "Stack",
+    "stack1": "TypeScript + SCSS",
+    "stack2": "i18n mediante locales JSON",
+    "stack3": "Mapas de registros Modbus y validación"
+  },
+  "services": {
+    "title": "Servicios",
+    "text": "Desde la configuración de dispositivos hasta paneles y analítica.",
+    "s1Title": "Integración de dispositivos",
+    "s1Text": "Mapas de registros Modbus RTU/TCP, gateways, validación.",
+    "s2Title": "Paneles",
+    "s2Text": "Tiempo real + histórico, por circuito, alertas, exportaciones.",
+    "s3Title": "Informes",
+    "s3Text": "Informes diarios/semanales/mensuales, análisis de coste y tarifas."
+  },
+  "contact": {
+    "title": "Contacto",
+    "lead": "Cuéntanos qué dispositivos tienes y qué quieres ver en el panel.",
+    "formTitle": "Solicitud rápida",
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "send": "Enviar",
+    "note": "Formulario demo: aún no hay backend. Luego podemos conectar Telegram/Email.",
+    "detailsTitle": "Detalles",
+    "d1": "Tiempo de respuesta",
+    "v1": "El mismo día",
+    "d2": "Región",
+    "v2": "Ucrania / UE",
+    "d3": "Formatos",
+    "v3": "Paneles, CSV, PDF",
+    "hint": "Si ya tienes un mapa de registros, envíalo y primero lo validamos."
+  }
+}

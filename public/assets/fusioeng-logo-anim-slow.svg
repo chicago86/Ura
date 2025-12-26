@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="80" viewBox="0 0 520 80" role="img" aria-label="Fusioeng logo">
+  <defs>
+    <style>
+      .word{font:800 34px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;letter-spacing:.35px;fill:rgba(231,238,247,.96)}
+      .sub{font:520 14px/1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;fill:rgba(231,238,247,.70)}
+      .c-blue{fill:#2F6BFF}.c-red{fill:#FF3B30}.c-yellow{fill:#FFC700}.c-green{fill:#2BD66F}
+
+      /* --- animation (slower) --- */
+      .bar{transform-box:fill-box;transform-origin:50% 100%;animation:barPulse 4.8s cubic-bezier(.45,0,.2,1) infinite}
+      .b1{animation-delay:0s}
+      .b2{animation-delay:.25s}
+      .b3{animation-delay:.5s}
+      .b4{animation-delay:.75s}
+
+      .dash{transform-box:fill-box;transform-origin:50% 50%;animation:dashGlow 4.8s ease-in-out infinite}
+      .d1{animation-delay:0s}
+      .d2{animation-delay:.3s}
+      .d3{animation-delay:.6s}
+      .d4{animation-delay:.9s}
+
+      .ekg{stroke-dasharray: 110 14; animation: ekgMove 6.8s linear infinite}
+
+      @keyframes barPulse{
+        0%{transform:scaleY(.78);opacity:.88}
+        35%{transform:scaleY(1.12);opacity:1}
+        70%{transform:scaleY(.86);opacity:.93}
+        100%{transform:scaleY(.78);opacity:.88}
+      }
+      @keyframes dashGlow{
+        0%,100%{opacity:.72;filter:none}
+        45%{opacity:1;filter:drop-shadow(0 0 8px rgba(231,238,247,.18))}
+      }
+      @keyframes ekgMove{
+        from{stroke-dashoffset:0}
+        to{stroke-dashoffset:-124}
+      }
+
+    </style>
+
+    <clipPath id="clipIcon"><rect x="12" y="12" width="40" height="40" rx="12"/></clipPath>
+    <filter id="glowIcon" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 .5 0" result="c"/>
+      <feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ICON (left) -->
+  <g transform="translate(10,16)">
+    <svg width="48" height="48" viewBox="0 0 64 64" aria-hidden="true">
+      <rect x="0" y="0" width="64" height="64" rx="16" fill="#0b0f14"/>
+      <rect x="12" y="12" width="40" height="40" rx="12"
+            fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
+
+      <g clip-path="url(#clipIcon)" opacity=".85">
+        <path d="M12 26H52M12 38H52" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+        <path d="M24 12V52M36 12V52" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+      </g>
+
+      <g clip-path="url(#clipIcon)" filter="url(#glowIcon)">
+        <rect class="bar b1" x="18" y="18" width="6" height="28" rx="3" fill="#2F6BFF"/>
+        <rect class="bar b2" x="26" y="22" width="6" height="24" rx="3" fill="#FFC700" opacity=".95"/>
+        <rect class="bar b3" x="34" y="20" width="6" height="26" rx="3" fill="#FF3B30" opacity=".92"/>
+        <rect class="bar b4" x="42" y="24" width="6" height="22" rx="3" fill="#2BD66F" opacity=".95"/>
+      </g>
+
+      <!-- cardiogram -->
+      <path class="ekg" d="M12 46
+               C18 46 18 38 22 38
+               S28 54 32 54
+               S38 34 42 34
+               S46 46 52 46"
+            fill="none"
+            stroke="rgba(231,238,247,.92)"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+      <circle cx="12" cy="46" r="2.1" fill="rgba(231,238,247,.92)"/>
+      <circle cx="52" cy="46" r="2.1" fill="rgba(231,238,247,.92)"/>
+    </svg>
+  </g>
+
+  <!-- TEXT -->
+  <text class="word" x="74" y="46">Fusioeng</text>
+
+  <!-- colored dashes (animated glow) -->
+  <g transform="translate(74,58)">
+    <rect class="c-blue dash d1"   x="0"  y="0" width="32" height="4" rx="2"/>
+    <rect class="c-yellow dash d2" x="40" y="0" width="26" height="4" rx="2"/>
+    <rect class="c-red dash d3"    x="74" y="0" width="24" height="4" rx="2"/>
+    <rect class="c-green dash d4"  x="106" y="0" width="40" height="4" rx="2"/>
+  </g>
+
+  <text class="sub" x="74" y="76">energy monitoring</text>
+</svg>
