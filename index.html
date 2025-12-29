@@ -4,12 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fusioeng</title>
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-16.png" sizes="16x16">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
-    <script>document.documentElement.classList.add('js-booting');</script>
 
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+
+    <script>
+      document.documentElement.classList.add("js-booting");
+    </script>
   </head>
 
   <body>
@@ -62,8 +65,7 @@
             </filter>
           </defs>
 
-          <!-- ICON (left) — збільшено ще на ~20% ТІЛЬКИ іконку -->
-          <!-- було: translate(10,16). тепер: translate(10,14) scale(1.2) -->
+          <!-- ICON -->
           <g transform="translate(10,14) scale(1.2)">
             <svg width="48" height="48" viewBox="0 0 64 64" aria-hidden="true">
               <rect x="0" y="0" width="64" height="64" rx="16" fill="#0b0f14" />
@@ -84,7 +86,6 @@
                   stroke-width="1" />
               </g>
 
-              <!-- bars with slow pulse -->
               <g clip-path="url(#clipIcon)" filter="url(#glowIcon)">
                 <rect x="18" y="18" width="6" height="28" rx="3" fill="#2F6BFF">
                   <animate attributeName="height" dur="3.2s"
@@ -118,7 +119,6 @@
                 </rect>
               </g>
 
-              <!-- cardiogram (slow draw) -->
               <path
                 d="M12 46
                    C18 46 18 38 22 38
@@ -132,11 +132,17 @@
                 stroke-linejoin="round"
                 stroke-dasharray="90"
                 stroke-dashoffset="90">
-                <animate attributeName="stroke-dashoffset" dur="3.6s"
-                  repeatCount="indefinite" values="90;0;0;90"
+                <animate
+                  attributeName="stroke-dashoffset"
+                  dur="3.6s"
+                  repeatCount="indefinite"
+                  values="90;0;0;90"
                   keyTimes="0;0.45;0.8;1" />
-                <animate attributeName="opacity" dur="3.6s"
-                  repeatCount="indefinite" values="0.85;1;1;0.85"
+                <animate
+                  attributeName="opacity"
+                  dur="3.6s"
+                  repeatCount="indefinite"
+                  values="0.85;1;1;0.85"
                   keyTimes="0;0.45;0.8;1" />
               </path>
 
@@ -145,10 +151,8 @@
             </svg>
           </g>
 
-          <!-- TEXT (праву частину залишаємо по розмірам як була, лише трохи зсунули вправо) -->
           <text class="word" x="86" y="46">Fusioeng</text>
 
-          <!-- colored dashes -->
           <g transform="translate(86,58)">
             <rect class="c-blue" x="0" y="0" width="32" height="4"
               rx="2"></rect>
@@ -164,7 +168,18 @@
         </svg>
       </div>
 
-      <div class="nav">
+      <!-- Burger (mobile/tablet) -->
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        type="button"
+        aria-controls="siteNav"
+        aria-expanded="false"
+        aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav" id="siteNav">
         <a href="/" data-route data-i18n="nav.home">Home</a>
         <a href="/about" data-route data-i18n="nav.about">About</a>
         <a href="/services" data-route data-i18n="nav.services">Services</a>
@@ -198,6 +213,9 @@
       </div>
     </div>
 
+    <!-- overlay for mobile menu -->
+    <div class="menu-overlay" id="menuOverlay" hidden></div>
+
     <!-- Geo banner -->
     <div class="geo-banner" id="geoBanner" hidden>
       <span data-i18n="geo.prompt">
@@ -209,6 +227,9 @@
         <button type="button" id="geoNo" data-i18n="geo.no">No</button>
       </div>
     </div>
+    <script src="/swirl/noise.min.js"></script>
+    <script src="/swirl/util.js"></script>
+    <script src="/swirl/swirl-hero.js"></script>
 
     <main class="container">
       <div id="app"></div>

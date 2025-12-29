@@ -11,6 +11,13 @@ import { contactPage } from "./pages/contact";
 
 type Lang = "uk" | "en" | "es";
 
+/** Swirl HERO (public/swirl/swirl-hero.js) */
+declare global {
+  interface Window {
+    SwirlHero?: { mount: () => void; unmount: () => void };
+  }
+}
+
 /* -----------------------------
    Anti-flicker + hover gating (language menu)
 ------------------------------ */
@@ -28,15 +35,92 @@ function forceCloseLangMenuNow() {
 }
 
 function enableHoverOpenSoon() {
-  // 1) невелика затримка після “переходів”
   window.setTimeout(() => (allowHoverOpen = true), 260);
 
-  // 2) або як тільки користувач реально поворухнув мишею
   const onMove = () => {
     allowHoverOpen = true;
     window.removeEventListener("mousemove", onMove, { capture: true } as any);
   };
   window.addEventListener("mousemove", onMove, { capture: true, once: true });
+}
+
+/* -----------------------------
+   Mobile menu (burger) — ONLY <= 640px
+------------------------------ */
+
+function isMobileNavMode() {
+  return window.matchMedia("(max-width: 640px)").matches;
+}
+
+function forceCloseMobileMenuNow() {
+  const header = document.querySelector(".header") as HTMLDivElement | null;
+  const btn = document.getElementById("menuBtn") as HTMLButtonElement | null;
+  const overlay = document.getElementById("menuOverlay") as HTMLDivElement | null;
+
+  if (!header || !btn || !overlay) return;
+
+  header.classList.remove("is-menu-open");
+  btn.setAttribute("aria-expanded", "false");
+  overlay.hidden = true;
+}
+
+function openMobileMenu() {
+  const header = document.querySelector(".header") as HTMLDivElement | null;
+  const btn = document.getElementById("menuBtn") as HTMLButtonElement | null;
+  const overlay = document.getElementById("menuOverlay") as HTMLDivElement | null;
+
+  if (!header || !btn || !overlay) return;
+
+  header.classList.add("is-menu-open");
+  btn.setAttribute("aria-expanded", "true");
+  overlay.hidden = false;
+
+  // не відкривати 2 меню одночасно
+  forceCloseLangMenuNow();
+}
+
+function toggleMobileMenu() {
+  if (!isMobileNavMode()) return;
+
+  const header = document.querySelector(".header") as HTMLDivElement | null;
+  if (!header) return;
+
+  header.classList.contains("is-menu-open") ? forceCloseMobileMenuNow() : openMobileMenu();
+}
+
+function initMobileMenu() {
+  const btn = document.getElementById("menuBtn") as HTMLButtonElement | null;
+  const overlay = document.getElementById("menuOverlay") as HTMLDivElement | null;
+  const nav = document.getElementById("siteNav") as HTMLDivElement | null;
+
+  if (!btn || !overlay || !nav) return;
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleMobileMenu();
+  });
+
+  overlay.addEventListener("click", () => forceCloseMobileMenuNow());
+
+  // закривати меню після кліку на пункт на мобільному
+  nav.addEventListener("click", (e) => {
+    const a = (e.target as HTMLElement).closest("a");
+    if (a && isMobileNavMode()) forceCloseMobileMenuNow();
+  });
+
+  // ESC закриває все
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      forceCloseMobileMenuNow();
+      forceCloseLangMenuNow();
+    }
+  });
+
+  // якщо вийшли з мобільного режиму — закрити мобільне меню
+  window.addEventListener("resize", () => {
+    if (!isMobileNavMode()) forceCloseMobileMenuNow();
+  });
 }
 
 /* -----------------------------
@@ -58,10 +142,21 @@ function normalizePath(p: string): string {
 function markActiveNav() {
   const path = normalizePath(location.pathname);
   document.querySelectorAll<HTMLAnchorElement>(".nav a[href]").forEach((a) => {
-    const href = normalizePath((a.getAttribute("href") ?? ""));
+    const href = normalizePath(a.getAttribute("href") ?? "");
     const isActive = !!href && href === path;
     a.classList.toggle("is-active", isActive);
   });
+}
+
+function updateHeroSwirl(routeKey: string) {
+  // остановить на всех страницах
+  window.SwirlHero?.unmount?.();
+
+  // включить только на Home
+  if (routeKey === "/") {
+    // чтобы контейнер уже имел размеры
+    requestAnimationFrame(() => window.SwirlHero?.mount?.());
+  }
 }
 
 async function renderRoute(pathname: string) {
@@ -71,20 +166,22 @@ async function renderRoute(pathname: string) {
   const key = normalizePath(pathname);
   const view = routes[key] ?? routes["/"];
 
-  // 1) закрити меню мов, щоб не миготіло при “віртуальному переході”
   forceCloseLangMenuNow();
+  forceCloseMobileMenuNow();
   allowHoverOpen = false;
 
-  // 2) підмінити контент
+  // ВАЖНО: перед заменой DOM — выключаем swirl
+  window.SwirlHero?.unmount?.();
+
   app.innerHTML = view();
 
-  // 3) активний пункт
   markActiveNav();
 
-  // 4) прогнати i18n по новому DOM (важливо)
   await setLang(getLang());
 
-  // 5) після рендера знов дозволити hover-open (з невеликою затримкою)
+  // ВАЖНО: после рендера — включаем только на "/"
+  updateHeroSwirl(key);
+
   allowHoverOpen = false;
   enableHoverOpenSoon();
 }
@@ -99,7 +196,6 @@ function navigate(to: string) {
 }
 
 function initSpaNav() {
-  // перехоплення кліків по a[data-route]
   document.addEventListener("click", (e) => {
     const a = (e.target as HTMLElement).closest("a[data-route]") as HTMLAnchorElement | null;
     if (!a) return;
@@ -111,17 +207,16 @@ function initSpaNav() {
     navigate(href);
   });
 
-  // back/forward
   window.addEventListener("popstate", () => {
     renderRoute(location.pathname).catch(console.error);
   });
 }
 
 /* -----------------------------
-   Language picker UI (hover)
+   Language picker UI (hover + click)
 ------------------------------ */
 
-function openLangMenu() {
+function openLangMenuHover() {
   if (!allowHoverOpen) return;
 
   const root = document.getElementById("langPicker") as HTMLDivElement | null;
@@ -133,9 +228,25 @@ function openLangMenu() {
     closeTimer = null;
   }
 
-  root.classList.add("is-expanded");
-  root.classList.add("is-open");
+  root.classList.add("is-expanded", "is-open");
   toggle.setAttribute("aria-expanded", "true");
+}
+
+function openLangMenuForce() {
+  const root = document.getElementById("langPicker") as HTMLDivElement | null;
+  const toggle = document.getElementById("langToggle") as HTMLButtonElement | null;
+  if (!root || !toggle) return;
+
+  if (closeTimer) {
+    window.clearTimeout(closeTimer);
+    closeTimer = null;
+  }
+
+  root.classList.add("is-expanded", "is-open");
+  toggle.setAttribute("aria-expanded", "true");
+
+  // закрити мобільне меню якщо було
+  forceCloseMobileMenuNow();
 }
 
 function closeLangMenuDelayed(delayMs = 220) {
@@ -146,8 +257,7 @@ function closeLangMenuDelayed(delayMs = 220) {
   if (closeTimer) window.clearTimeout(closeTimer);
 
   closeTimer = window.setTimeout(() => {
-    root.classList.remove("is-open");
-    root.classList.remove("is-expanded");
+    root.classList.remove("is-open", "is-expanded");
     toggle.setAttribute("aria-expanded", "false");
     closeTimer = null;
   }, delayMs);
@@ -155,12 +265,27 @@ function closeLangMenuDelayed(delayMs = 220) {
 
 function initLangPicker() {
   const root = document.getElementById("langPicker") as HTMLDivElement | null;
-  if (!root) return;
+  const toggle = document.getElementById("langToggle") as HTMLButtonElement | null;
+  if (!root || !toggle) return;
 
   root.classList.remove("is-open", "is-expanded");
 
-  root.addEventListener("mouseenter", () => openLangMenu());
+  root.addEventListener("mouseenter", () => openLangMenuHover());
   root.addEventListener("mouseleave", () => closeLangMenuDelayed(220));
+
+  toggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const isOpen = root.classList.contains("is-open");
+    if (isOpen) closeLangMenuDelayed(0);
+    else openLangMenuForce();
+  });
+
+  document.addEventListener("click", (e) => {
+    const t = e.target as HTMLElement;
+    if (!t.closest("#langPicker")) closeLangMenuDelayed(0);
+  });
 }
 
 function setActiveMenuItem(lang: Lang) {
@@ -290,15 +415,13 @@ async function afterLanguageSet(lang: Lang) {
 async function bootstrap() {
   await logGeoPermission();
 
-  // SPA navigation
   initSpaNav();
+  initMobileMenu();
 
-  // language UI
   forceCloseLangMenuNow();
   initLangPicker();
   initLangButtons();
 
-  // language selection
   const saved = getSavedLang() as Lang | null;
   if (saved) {
     forceHideGeoBanner();
@@ -320,12 +443,12 @@ async function bootstrap() {
     }
   }
 
-  // first render for current path
   await renderRoute(location.pathname);
 
-  // enable hover-open after everything is ready
   allowHoverOpen = false;
   enableHoverOpenSoon();
+
+  document.documentElement.classList.remove("js-booting");
 }
 
 window.addEventListener("DOMContentLoaded", () => {
