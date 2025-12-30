@@ -1,5 +1,5 @@
 :root {
-  --bg: #0C0812;
+  --bg: #0c0812;
   --text: #e7eef7;
   --muted: #9ab0c6;
   --border: rgba(255, 255, 255, 0.12);
@@ -23,22 +23,90 @@
   --lp-expanded: 210px;
 }
 
-* { box-sizing: border-box; }
-html, body { height: 100%; }
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  overflow-x: clip;
+}
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
   color: var(--text);
   background:
-    radial-gradient(900px 420px at 20% -10%, rgba(255,255,255,0.06), transparent 60%),
-    radial-gradient(700px 360px at 90% 0%, rgba(255,255,255,0.04), transparent 60%),
-    var(--bg);
+    radial-gradient(900px 420px at 20% -10%, rgba(255, 255, 255, 0.06), transparent 60%),
+    radial-gradient(700px 360px at 90% 0%, rgba(255, 255, 255, 0.04), transparent 60%), var(--bg);
+}
+
+a {
+  color: inherit;
 }
 
 .container {
   width: min(1100px, calc(100% - 32px));
   margin: 0px auto;
+}
+
+/* =============================
+   BUTTONS (base)
+============================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--text);
+  text-decoration: none;
+
+  font-weight: 750;
+  letter-spacing: 0.12px;
+
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 200ms ease;
+}
+
+.btn:hover {
+  background: var(--btn-bg-hover);
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+.btn--primary {
+  background: rgba(0, 200, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.btn--primary:hover {
+  background: rgba(0, 200, 255, 0.92);
+}
+
+.btn--accent {
+  background: rgba(120, 210, 70, 0.9);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.btn--accent:hover {
+  background: rgba(120, 210, 70, 0.96);
 }
 
 /* =============================
@@ -93,22 +161,47 @@ body {
   background: linear-gradient(90deg, transparent, rgba(231, 238, 247, 0.86), transparent);
   filter: blur(0.35px);
   pointer-events: none;
-  animation: waveAppear 900ms ease-out 120ms forwards, headerWave 3.8s ease-in-out 900ms infinite;
+  animation:
+    waveAppear 900ms ease-out 120ms forwards,
+    headerWave 3.8s ease-in-out 900ms infinite;
 }
 
 @keyframes waveAppear {
-  from { opacity: 0; transform: translateY(2px); }
-  to   { opacity: 0.95; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
 }
 @keyframes headerWave {
-  0%   { transform: translateX(0); opacity: 0.35; }
-  45%  { opacity: 0.55; }
-  100% { transform: translateX(190%); opacity: 0.35; }
+  0% {
+    transform: translateX(0);
+    opacity: 0.35;
+  }
+  45% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateX(190%);
+    opacity: 0.35;
+  }
 }
 
 /* ===== BRAND ===== */
-.brand { display: flex; align-items: center; min-width: 220px; }
-.brand__logo { display: block; height: 56px; width: auto; filter: drop-shadow(0 12px 22px rgba(0,0,0,0.40)); }
+.brand {
+  display: flex;
+  align-items: center;
+  min-width: 220px;
+}
+.brand__logo {
+  display: block;
+  height: 56px;
+  width: auto;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.4));
+}
 
 /* =============================
    NAV — tabs (desktop/tablet)
@@ -122,8 +215,8 @@ body {
   padding: 4px;
   border-radius: 999px;
 
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
 }
 
@@ -132,35 +225,45 @@ body {
   padding: 10px 14px;
   border-radius: 999px;
 
-  color: rgba(231,238,247,0.76);
+  color: rgba(231, 238, 247, 0.76);
   text-decoration: none;
 
   font-weight: 650;
   font-size: 16px;
-  letter-spacing: .12px;
+  letter-spacing: 0.12px;
 
-  transition: color 160ms ease, transform 160ms ease, background 160ms ease, box-shadow 200ms ease;
+  transition:
+    color 160ms ease,
+    transform 160ms ease,
+    background 160ms ease,
+    box-shadow 200ms ease;
 }
 
-.nav a + a { margin-left: 2px; }
+.nav a + a {
+  margin-left: 2px;
+}
 
 .nav a:hover {
-  color: rgba(231,238,247,0.96);
-  background: rgba(255,255,255,0.05);
+  color: rgba(231, 238, 247, 0.96);
+  background: rgba(255, 255, 255, 0.05);
   transform: translateY(-1px);
 }
 
 .nav a.is-active {
   color: var(--active-text);
   background: var(--active-bg);
-  box-shadow: 0 10px 18px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.35) inset;
+  box-shadow:
+    0 10px 18px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.35) inset;
 }
 
 /* =============================
    LANG PICKER
 ============================= */
 
-.langpicker { position: relative; }
+.langpicker {
+  position: relative;
+}
 
 .langpicker__btn {
   display: flex;
@@ -178,8 +281,11 @@ body {
   cursor: pointer;
   padding: 0 10px;
 
-  box-shadow: 0 14px 30px rgba(0,0,0,0.22);
-  transition: width 260ms cubic-bezier(.16, 1, .3, 1), background 160ms ease, border-color 160ms ease;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+  transition:
+    width 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 160ms ease,
+    border-color 160ms ease;
 }
 
 .langpicker.is-expanded .langpicker__btn {
@@ -187,8 +293,8 @@ body {
   justify-content: flex-start;
   gap: 10px;
   padding: 0 14px;
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 .langpicker__circle {
@@ -199,16 +305,26 @@ body {
   place-items: center;
   border-radius: 999px;
 
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
 }
 
-.langpicker__img { width: 18px; height: 18px; opacity: 0.92; }
+.langpicker__img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.92;
+}
 
 .langpicker.is-expanded .langpicker__circle {
-  width: 0; height: 0; flex: 0 0 0;
-  margin: 0; padding: 0; border: 0;
-  opacity: 0; overflow: hidden; pointer-events: none;
+  width: 0;
+  height: 0;
+  flex: 0 0 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .langpicker__text {
@@ -216,11 +332,24 @@ body {
   align-items: center;
   white-space: nowrap;
 }
-.langpicker.is-expanded .langpicker__text { display: flex; }
+.langpicker.is-expanded .langpicker__text {
+  display: flex;
+}
 
-.langpicker__title { font-size: 14px; font-weight: 650; opacity: 0.9; }
-.langpicker__sep { font-size: 14px; font-weight: 800; opacity: 0.45; }
-.langpicker__value { font-size: 14px; font-weight: 850; }
+.langpicker__title {
+  font-size: 14px;
+  font-weight: 650;
+  opacity: 0.9;
+}
+.langpicker__sep {
+  font-size: 14px;
+  font-weight: 800;
+  opacity: 0.45;
+}
+.langpicker__value {
+  font-size: 14px;
+  font-weight: 850;
+}
 
 .langpicker__menu {
   position: absolute;
@@ -237,9 +366,9 @@ body {
   border: 1px solid var(--border);
   border-radius: 16px;
 
-  background: rgba(10,14,18,0.92);
+  background: rgba(10, 14, 18, 0.92);
   backdrop-filter: blur(10px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.34);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.34);
 
   max-height: 240px;
   overflow: auto;
@@ -248,7 +377,9 @@ body {
   transform: translateY(10px) scale(0.985);
   pointer-events: none;
 
-  transition: opacity 160ms ease, transform 260ms cubic-bezier(.16, 1, .3, 1);
+  transition:
+    opacity 160ms ease,
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .langpicker.is-open .langpicker__menu {
   opacity: 1;
@@ -258,8 +389,8 @@ body {
 
 .langpicker__menu button {
   width: 100%;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.02);
   color: var(--text);
 
   padding: 10px 10px;
@@ -275,9 +406,9 @@ body {
 }
 
 .langpicker__menu button.is-active {
-  background: rgba(231,238,247,0.92);
+  background: rgba(231, 238, 247, 0.92);
   color: #0b0f14;
-  border-color: rgba(255,255,255,0.35);
+  border-color: rgba(255, 255, 255, 0.35);
   font-weight: 850;
 }
 
@@ -291,8 +422,8 @@ body {
   height: 56px;
   border-radius: 999px;
 
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
   cursor: pointer;
 
   padding: 0;
@@ -302,8 +433,10 @@ body {
   flex-direction: column;
   gap: 5px;
 
-  box-shadow: 0 14px 30px rgba(0,0,0,.22);
-  transition: background 200ms ease, border-color 200ms ease;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
   position: relative;
 }
 
@@ -312,8 +445,8 @@ body {
   position: absolute;
   inset: 9px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   pointer-events: none;
 }
 
@@ -321,24 +454,32 @@ body {
   width: 18px;
   height: 2px;
   border-radius: 2px;
-  background: rgba(231,238,247,0.86);
-  transition: transform 220ms ease, opacity 180ms ease;
+  background: rgba(231, 238, 247, 0.86);
+  transition:
+    transform 220ms ease,
+    opacity 180ms ease;
 }
 
 .menu-btn:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.22);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
-.header.is-menu-open .menu-btn span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.header.is-menu-open .menu-btn span:nth-child(2) { opacity: 0; }
-.header.is-menu-open .menu-btn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.header.is-menu-open .menu-btn span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.header.is-menu-open .menu-btn span:nth-child(2) {
+  opacity: 0;
+}
+.header.is-menu-open .menu-btn span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
 .menu-overlay {
   position: fixed;
   inset: 0;
   z-index: 45;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(2px);
 }
 
@@ -353,11 +494,15 @@ body {
     gap: 10px;
 
     padding: 14px 12px;
-    padding-right: 76px; /* місце під кнопку мови */
+    padding-right: 76px;
   }
 
-  .brand { min-width: unset; }
-  .brand__logo { height: 50px; }
+  .brand {
+    min-width: unset;
+  }
+  .brand__logo {
+    height: 50px;
+  }
 
   .langpicker {
     position: absolute;
@@ -366,14 +511,18 @@ body {
     z-index: 80;
   }
 
-  .nav { padding: 3px; }
+  .nav {
+    padding: 3px;
+  }
   .nav a {
     padding: 8px 10px;
     font-size: 14px;
-    letter-spacing: .08px;
+    letter-spacing: 0.08px;
   }
 
-  .nav { flex-wrap: nowrap; }
+  .nav {
+    flex-wrap: nowrap;
+  }
 }
 
 /* =============================
@@ -387,10 +536,12 @@ body {
     gap: 10px;
 
     padding: 16px 12px;
-    padding-right: 140px; /* місце під 2 круглі кнопки */
+    padding-right: 140px;
   }
 
-  .brand__logo { height: 46px; }
+  .brand__logo {
+    height: 46px;
+  }
 
   .langpicker {
     position: absolute;
@@ -407,7 +558,6 @@ body {
     z-index: 79;
   }
 
-  /* кнопка мови: тільки планета (без тексту) */
   .langpicker__btn {
     width: 56px;
     padding: 0;
@@ -421,8 +571,8 @@ body {
     display: grid;
     place-items: center;
     opacity: 1;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .langpicker__text,
@@ -436,8 +586,8 @@ body {
     width: 36px !important;
     height: 36px !important;
     flex: 0 0 36px !important;
-    border: 1px solid rgba(255,255,255,0.12) !important;
-    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
     opacity: 1 !important;
     overflow: visible !important;
     pointer-events: auto !important;
@@ -449,7 +599,6 @@ body {
     justify-content: center !important;
   }
 
-  /* dropdown nav */
   .nav {
     position: absolute;
     left: 12px;
@@ -465,18 +614,20 @@ body {
     padding: 14px 12px;
     border-radius: 18px;
 
-    border: 1px solid rgba(255,255,255,0.14);
-    background: rgba(10,14,18,0.86);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(10, 14, 18, 0.86);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 
-    box-shadow: 0 20px 50px rgba(0,0,0,.38);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
 
     opacity: 0;
     transform: translateY(10px) scale(0.985);
     pointer-events: none;
 
-    transition: opacity 160ms ease, transform 260ms cubic-bezier(.16, 1, .3, 1);
+    transition:
+      opacity 160ms ease,
+      transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .header.is-menu-open .nav {
@@ -485,7 +636,6 @@ body {
     pointer-events: auto;
   }
 
-  /* кнопки в dropdown: НЕ на всю ширину */
   .nav a {
     width: min(360px, 92%);
     text-align: center;
@@ -494,59 +644,59 @@ body {
     font-size: 18px;
     font-weight: 750;
 
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: none;
 
     transform: none;
   }
 
   .nav a:hover {
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     transform: none;
   }
 
-  /* ===== ACTIVE: pulse the whole pill (medium) ===== */
   .nav a.is-active {
-    background: rgba(231,238,247,0.90);
+    background: rgba(231, 238, 247, 0.9);
     color: #0b0f14;
-    border-color: rgba(255,255,255,0.35);
+    border-color: rgba(255, 255, 255, 0.35);
 
     box-shadow:
-      0 16px 30px rgba(0,0,0,0.24),
-      0 0 0 1px rgba(255,255,255,0.30) inset;
+      0 16px 30px rgba(0, 0, 0, 0.24),
+      0 0 0 1px rgba(255, 255, 255, 0.3) inset;
 
     animation: activePillPulse 1.6s ease-in-out infinite;
     will-change: transform, box-shadow, filter;
   }
 
-  /* якщо раніше було ::after з лінією — прибрати */
   .nav a.is-active::after {
     content: none !important;
   }
 }
 
 @keyframes activePillPulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     box-shadow:
-      0 16px 30px rgba(0,0,0,0.24),
-      0 0 0 1px rgba(255,255,255,0.30) inset;
+      0 16px 30px rgba(0, 0, 0, 0.24),
+      0 0 0 1px rgba(255, 255, 255, 0.3) inset;
     filter: brightness(1);
   }
   50% {
-    transform: scale(1.015); /* середня пульсація */
+    transform: scale(1.015);
     box-shadow:
-      0 22px 44px rgba(0,0,0,0.30),
-      0 0 0 1px rgba(255,255,255,0.34) inset,
-      0 0 18px rgba(231,238,247,0.22);
+      0 22px 44px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.34) inset,
+      0 0 18px rgba(231, 238, 247, 0.22);
     filter: brightness(1.05);
   }
 }
 
-/* ensure desktop/tablet (641+) nav is always visible and not dropdown */
 @media (min-width: 641px) {
-  .menu-overlay { display: none !important; }
+  .menu-overlay {
+    display: none !important;
+  }
   .header.is-menu-open .nav {
     opacity: 1 !important;
     transform: none !important;
@@ -562,23 +712,20 @@ body {
     transition-duration: 0.001ms !important;
   }
 }
-/* =============================
-   HERO SWIRL — FULL WIDTH BG
-   (replaces old hero--swirl block)
-============================= */
+
+/* =========================================================
+   HERO SWIRL — E360 centered (ONE definitive block)
+   ========================================================= */
 
 .page--home .hero--swirl {
-  position: relative;
-  overflow: hidden;
-
-  /* делаем секцию шириной во весь экран,
-     даже если она внутри .container */
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  min-height: 520px;
+
+  overflow-x: clip; /* або hidden */
 }
 
+/* background */
 .page--home .hero__bg--swirl {
   position: absolute;
   inset: 0;
@@ -594,35 +741,470 @@ body {
   display: block;
 }
 
-/* контент поверх фона */
-.page--home .hero__inner {
-  position: relative;
+/* overlay (light, no border, does not hide bg) */
+.page--home .hero__overlay {
+  position: absolute;
+  inset: 0;
   z-index: 1;
+  pointer-events: none;
 
-  /* повторяем ширину твоего .container: min(1100px, 100%-32px) */
-  width: min(1100px, calc(100% - 32px));
+  background:
+    radial-gradient(1200px 720px at 50% 35%, rgba(0, 0, 0, 0.18), transparent 60%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55));
+
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* centered content exactly */
+.page--home .hero__inner.hero__inner--e360 {
+  position: relative;
+  z-index: 2;
+
+  width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
 
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 28px;
+  min-height: inherit;
+  padding: clamp(28px, 6vw, 72px) 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
 }
 
-/* если у тебя уже есть стили hero__left/hero__right — они продолжат работать */
-.page--home .hero__left,
-.page--home .hero__right {
+/* badge */
+.page--home .hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 16px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+
+  margin: 0 0 clamp(18px, 3vw, 30px) 0;
+}
+
+.page--home .hero__badgeLogo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+
+  background: rgba(120, 255, 180, 0.18);
+  border: 1px solid rgba(120, 255, 180, 0.28);
+
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.page--home .hero__badgeText {
+  opacity: 0.92;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+/* title */
+.page--home .hero__title {
+  margin: 0;
+  font-weight: 700;
+
+  font-size: clamp(36px, 5.2vw, 78px);
+  line-height: 1.05;
+
+  max-width: 25ch;
+}
+
+@supports (text-wrap: balance) {
+  .page--home .hero__title {
+    text-wrap: balance;
+  }
+}
+
+/* lead */
+.page--home .hero__lead {
+  margin: clamp(16px, 2.6vw, 24px) 0 0;
+  max-width: 80ch;
+
+  font-size: clamp(16px, 1.6vw, 22px);
+  line-height: 1.6;
+
+  opacity: 0.9;
+}
+
+/* CTA */
+.page--home .hero__cta {
+  margin-top: clamp(18px, 3vw, 30px);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.page--home .hero__cta .btn {
+  text-decoration: none !important;
+}
+
+/* mobile tweaks */
+@media (max-width: 640px) {
+  .page--home .hero__badgeText {
+    font-size: 13px;
+    white-space: normal;
+  }
+  .page--home .hero__title {
+    max-width: 22ch;
+  }
+}
+
+/* ===== E360 Demo button effect ===== */
+.hero__cta .btn--primary {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  /* форма/типографіка */
+  border-radius: 999px;
+  padding: 18px 42px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+
+  /* базовий вигляд */
+  color: #fff;
+  background: linear-gradient(180deg, rgba(25, 63, 136, 0.98), rgba(19, 48, 110, 0.98));
+  border: 3px solid rgba(40, 226, 212, 0.95);
+
+  /* легка “внутрішня рамка” як на прикладі */
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.22) inset,
+    0 18px 40px rgba(0, 0, 0, 0.35);
+
+  text-decoration: none !important;
+  transform: translateZ(0);
+  transition:
+    transform 180ms ease,
+    filter 180ms ease,
+    box-shadow 180ms ease;
 }
 
-/* адаптив */
-@media (max-width: 900px) {
-  .page--home .hero--swirl {
-    min-height: 560px;
-    padding: 28px 0;
-  }
+/* неонова аура навколо */
+.hero__cta .btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: -1;
 
-  .page--home .hero__inner {
-    grid-template-columns: 1fr;
-    gap: 18px;
+  background:
+    radial-gradient(closest-side, rgba(40, 226, 212, 0.35), transparent 65%),
+    radial-gradient(closest-side, rgba(40, 226, 212, 0.18), transparent 75%);
+
+  filter: blur(10px);
+  opacity: 0.55;
+  transition:
+    opacity 180ms ease,
+    filter 180ms ease;
+}
+
+/* “shine” смуга, що проїжджає (як блиск на кнопці) */
+.hero__cta .btn--primary::after {
+  content: "";
+  position: absolute;
+  top: -55%;
+  left: -45%;
+  width: 35%;
+  height: 220%;
+  z-index: 1;
+  pointer-events: none;
+
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+
+  transform: rotate(18deg);
+  opacity: 0;
+}
+
+/* Hover: трохи “підняти” і запустити блиск */
+.hero__cta .btn--primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.26) inset,
+    0 24px 54px rgba(0, 0, 0, 0.42);
+}
+
+.hero__cta .btn--primary:hover::before {
+  opacity: 0.8;
+  filter: blur(12px);
+}
+
+.hero__cta .btn--primary:hover::after {
+  opacity: 0.35;
+  animation: demoShine 1.05s ease-out forwards;
+}
+
+@keyframes demoShine {
+  0% {
+    left: -45%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.45;
+  }
+  100% {
+    left: 130%;
+    opacity: 0;
   }
 }
+
+/* Active: натиск */
+.hero__cta .btn--primary:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero__cta .btn--primary,
+  .hero__cta .btn--primary::before,
+  .hero__cta .btn--primary::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+/* ===== Постійний блиск ТІЛЬКИ по бордеру (loop) ===== */
+.hero__cta .btn--primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  border-radius: 999px;
+  padding: 18px 42px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  text-decoration: none !important;
+
+  /* ВНУТРІШНІЙ фон кнопки */
+  color: #fff;
+  background: linear-gradient(180deg, rgba(25, 63, 136, 0.98), rgba(19, 48, 110, 0.98));
+
+  /* важливо: реальний border робимо прозорим,
+     а красивий “бордер” малюємо через ::before */
+  border: 3px solid transparent;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.2) inset,
+    0 18px 40px rgba(0, 0, 0, 0.35);
+
+  transform: translateZ(0);
+}
+
+/* “бордер-кільце” з рухомим блиском */
+.hero__cta .btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 3px; /* товщина бордера */
+  pointer-events: none;
+  z-index: 0;
+
+  /* 1) базовий бірюзовий бордер
+     2) зверху — вузький білий хайлайт, який “їде” */
+  background: linear-gradient(
+    90deg,
+    rgba(40, 226, 212, 0.95) 0%,
+    rgba(40, 226, 212, 0.95) 45%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(40, 226, 212, 0.95) 55%,
+    rgba(40, 226, 212, 0.95) 100%
+  );
+
+  /* рухаємо градієнт */
+  background-size: 260% 100%;
+  animation: borderShine 2.6s linear infinite;
+
+  /* маска: залишаємо тільки “кільце” (без середини) */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  opacity: 0.95;
+}
+
+/* контент кнопки завжди поверх бордера */
+.hero__cta .btn--primary > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* легка неонова аура навколо (опційно, виглядає як на прикладі) */
+.hero__cta .btn--primary::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(closest-side, rgba(40, 226, 212, 0.28), transparent 70%);
+  filter: blur(10px);
+  opacity: 0.55;
+}
+
+/* hover — трохи посилюємо */
+.hero__cta .btn--primary:hover {
+  filter: brightness(1.06);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.26) inset,
+    0 24px 54px rgba(0, 0, 0, 0.42);
+}
+
+.hero__cta .btn--primary:hover::after {
+  opacity: 0.75;
+}
+
+@keyframes borderShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero__cta .btn--primary::before {
+    animation: none !important;
+  }
+}
+/* ===== FINAL: Primary button with border-only floating shine ===== */
+.page--home .hero__cta .btn--primary{
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  height: 56px;
+  padding: 0 44px;
+  border-radius: 999px;
+
+  font-weight: 850;
+  letter-spacing: 0.2px;
+
+  color: rgba(255,255,255,0.98);
+  background: linear-gradient(180deg, rgba(25, 63, 136, 0.98), rgba(19, 48, 110, 0.98));
+
+  /* реальний border прозорий — “кільце” малюємо ::before */
+  border: 3px solid transparent;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.18) inset,
+    0 18px 40px rgba(0, 0, 0, 0.35);
+
+  text-decoration: none !important;
+  transform: translateZ(0);
+  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
+}
+
+/* бордер-кільце з постійним “плаваючим” блиском */
+.page--home .hero__cta .btn--primary::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  padding: 3px; /* товщина бордера */
+  pointer-events:none;
+  z-index:0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(40, 226, 212, 0.92) 0%,
+    rgba(40, 226, 212, 0.92) 40%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(40, 226, 212, 0.92) 60%,
+    rgba(40, 226, 212, 0.92) 100%
+  );
+
+  background-size: 300% 100%;
+  animation: borderShine 3.2s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  opacity: 0.95;
+}
+
+/* текст поверх бордера */
+.page--home .hero__cta .btn--primary > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* легка аура */
+.page--home .hero__cta .btn--primary::after{
+  content:"";
+  position:absolute;
+  inset:-12px;
+  border-radius: inherit;
+  pointer-events:none;
+  z-index:-1;
+
+  background: radial-gradient(closest-side, rgba(40,226,212,0.28), transparent 72%);
+  filter: blur(12px);
+  opacity: 0.55;
+  transition: opacity 180ms ease, filter 180ms ease;
+}
+
+.page--home .hero__cta .btn--primary:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.24) inset,
+    0 24px 54px rgba(0, 0, 0, 0.42);
+}
+
+.page--home .hero__cta .btn--primary:hover::after{
+  opacity: 0.8;
+  filter: blur(14px);
+}
+
+.page--home .hero__cta .btn--primary:active{
+  transform: translateY(0px) scale(0.99);
+}
+
+/* гарний доступний фокус */
+.page--home .hero__cta .btn--primary:focus-visible{
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.28) inset,
+    0 0 0 4px rgba(40,226,212,0.35),
+    0 24px 54px rgba(0, 0, 0, 0.42);
+}
+
+@keyframes borderShine{
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .page--home .hero__cta .btn--primary::before{ animation: none !important; }
+}
+

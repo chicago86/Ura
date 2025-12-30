@@ -22,6 +22,12 @@
     "languageTitle": "Idioma"
   },
   "home": {
+    "badge": "Software para el monitoreo del consumo de energía",
+    "titleA": "Monitorea cada",
+    "unit": "kWh",
+    "titleB": "y evita pérdidas de energía en tiempo real.",
+    "cta1": "Solicitar una demo",
+
     "heroTitle": "Monitoreo de energía que se siente simple",
     "heroText": "TypeScript + SCSS + i18n (uk/en/es). Puesta en marcha rápida. Paneles limpios.",
     "ctaPrimary": "Ver servicios",
@@ -35,7 +41,8 @@
     "t2": "insights rápidos",
     "k3": "Informes",
     "t3": "listos para compartir",
-    "note": "Consejo: cambia el idioma cuando quieras — el contenido se actualiza al instante."
+    "note": "Consejo: cambia el idioma cuando quieras — el contenido se actualiza al instante.",
+    "lead": "Obtén visibilidad completa del consumo energético de tu empresa. Detecta ineficiencias, reduce picos de carga y supervisa cada panel, zona y equipo con el monitoreo en tiempo real de FusioEnergy."
   },
   "about": {
     "title": "Acerca de",

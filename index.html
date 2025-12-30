@@ -227,6 +227,8 @@
         <button type="button" id="geoNo" data-i18n="geo.no">No</button>
       </div>
     </div>
+
+    <!-- Swirl background libs -->
     <script src="/swirl/noise.min.js"></script>
     <script src="/swirl/util.js"></script>
     <script src="/swirl/swirl-hero.js"></script>
@@ -235,6 +237,9 @@
       <div id="app"></div>
     </main>
 
+    <!-- ✅ Підключення модалу НЕ ТУТ.
+         Модал рендериться всередині Home (homePage()),
+         а initDemoModal() викликається в /src/main.ts після рендера Home. -->
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

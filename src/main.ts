@@ -1,8 +1,11 @@
 import "./styles/main.scss";
+import "./styles/demo-modal.scss";
 
 import { getSavedLang, saveLang } from "./ts/storage";
 import { getLang, setLang } from "./ts/i18n";
 import { guessLangByGeolocation, guessLangByTimeZone } from "./ts/geoLang";
+
+import { initDemoModal } from "./ts/demoModal";
 
 import { homePage } from "./pages/home";
 import { aboutPage } from "./pages/about";
@@ -417,6 +420,9 @@ async function bootstrap() {
 
   initSpaNav();
   initMobileMenu();
+
+  // ✅ модалка ініціалізується один раз на все SPA
+  initDemoModal();
 
   forceCloseLangMenuNow();
   initLangPicker();

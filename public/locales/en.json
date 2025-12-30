@@ -22,6 +22,12 @@
     "languageTitle": "Language"
   },
   "home": {
+    "badge": "Energy consumption monitoring software",
+    "titleA": "Track every",
+    "unit": "kWh",
+    "titleB": "and prevent energy losses in real time.",
+    "cta1": "Request a demo",
+
     "heroTitle": "Energy monitoring that feels simple",
     "heroText": "TypeScript + SCSS + i18n (uk/en/es). Fast setup. Clean dashboards.",
     "ctaPrimary": "View services",
@@ -35,7 +41,8 @@
     "t2": "fast insights",
     "k3": "Reports",
     "t3": "ready to share",
-    "note": "Tip: switch language anytime — content updates instantly."
+    "note": "Tip: switch language anytime — content updates instantly.",
+    "lead": "Get full visibility into your company's energy consumption. Identify inefficiencies, reduce peak loads, and track every panel, zone, and asset with FusioEnergy real-time monitoring."
   },
   "about": {
     "title": "About",
